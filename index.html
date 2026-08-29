@@ -49,6 +49,64 @@
   .event-card { transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease, border-color .4s ease; }
   .event-card:hover { transform: translateY(-8px); border-color: #c99a52; box-shadow: 0 32px 70px -30px rgba(70,20,14,0.45); }
 
+  /* ---------------- TICKET EVENT CARDS ---------------- */
+  .tickets { display: flex; flex-direction: column; gap: 46px; }
+  .ticket {
+    display: flex; position: relative; background: #fffaf1;
+    border-radius: 10px; overflow: visible;
+    box-shadow: 0 26px 55px -30px rgba(70,20,14,0.4);
+    transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease;
+  }
+  .ticket.tilt-l { transform: rotate(-1.4deg); }
+  .ticket.tilt-r { transform: rotate(1.4deg); }
+  .ticket:hover { transform: rotate(0deg) translateY(-10px) scale(1.015); box-shadow: 0 40px 80px -32px rgba(70,20,14,0.5); }
+
+  .ticket-stamp {
+    position: absolute; top: -16px; right: 26px; width: 54px; height: 54px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; transform: rotate(-9deg);
+    box-shadow: 0 8px 18px -6px rgba(70,20,14,0.5); border: 2px dashed rgba(255,255,255,0.55);
+  }
+  .ticket-stamp svg { width: 22px; height: 22px; }
+
+  .ticket-date {
+    flex: 0 0 128px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #f6dfba; border-radius: 10px 0 0 10px; position: relative; text-align: center; padding: 20px 10px;
+  }
+  .ticket-date .month { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; opacity: .85; }
+  .ticket-date .day { font-family: "Cormorant Garamond", serif; font-size: 3rem; line-height: 1; margin: 4px 0; }
+  .ticket-date .yr { font-size: 0.72rem; letter-spacing: 0.14em; opacity: .8; }
+
+  .ticket-perf {
+    flex: 0 0 0; position: relative; width: 0;
+    background-image: radial-gradient(circle, #fbf3e8 5px, transparent 5.5px);
+    background-size: 22px 22px; background-repeat: repeat-y; background-position: -11px 0;
+  }
+  .ticket-perf::before, .ticket-perf::after {
+    content: ""; position: absolute; left: -11px; width: 22px; height: 22px; border-radius: 50%; background: #fbf3e8;
+  }
+  .ticket-perf::before { top: -11px; }
+  .ticket-perf::after { bottom: -11px; }
+
+  .ticket-info { flex: 1; padding: 30px 30px 26px 34px; }
+  .ticket-info .kind { font-size: 1.55rem; font-style: italic; color: #2d1310; margin-bottom: 6px; }
+  .ticket-info .time { font-family: "Cormorant Garamond", serif; font-size: 1.35rem; color: #5c1414; font-variant-numeric: tabular-nums; }
+  .ticket-info .venue { font-size: 0.98rem; font-weight: 600; color: #2d1310; margin-top: 12px; }
+  .ticket-info .addr { font-size: 0.85rem; color: #8a6151; margin-top: 2px; }
+  .ticket-info .go { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; border-bottom: 1px solid #c99a52; padding-bottom: 3px; }
+  .ticket-info .go svg { width: 12px; height: 12px; transition: transform .3s ease; }
+  .ticket-info .go:hover svg { transform: translateX(3px); }
+
+  @media (max-width: 560px) {
+    .ticket { flex-direction: column; border-radius: 10px; }
+    .ticket-date { flex-direction: row; gap: 8px; border-radius: 10px 10px 0 0; padding: 14px; }
+    .ticket-date .day { margin: 0; }
+    .ticket-perf { width: 100%; height: 0; background-image: radial-gradient(circle, #fbf3e8 5px, transparent 5.5px); background-size: 22px 22px; background-repeat: repeat-x; background-position: 0 -11px; }
+    .ticket-perf::before, .ticket-perf::after { left: auto; top: -11px; }
+    .ticket-perf::before { left: -11px; }
+    .ticket-perf::after { right: -11px; left: auto; }
+    .ticket-info { padding: 22px 24px; }
+  }
+
   .petal { position: absolute; bottom: -40px; border-radius: 50% 4% 50% 4%; background: linear-gradient(135deg,#c99a52,#7c1f1f); animation: drift linear infinite; pointer-events: none; }
 
   /* ---------------- LAUNCH SCREEN ---------------- */
@@ -199,29 +257,49 @@
       <h2 style="font-size:clamp(2rem,4vw,2.7rem); font-style:italic; color:#7c1f1f; margin-top:10px;">The Celebration</h2>
     </div>
 
-    <div class="events" style="display:grid; grid-template-columns:1fr 1fr; gap:28px;">
-      <div class="card event-card sr" style="padding:38px 30px; text-align:center; transition-delay:.05s;">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7c1f1f" stroke-width="1.3" style="margin:0 auto 18px;">
-          <path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"/><path d="M12 8v6M9 11h6"/>
-        </svg>
-        <h3 style="font-size:1.6rem; font-style:italic; color:#2d1310; margin-bottom:12px;">Wedding Ceremony</h3>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:#5c1414; font-variant-numeric:tabular-nums;">4:00 PM</div>
-        <div style="font-size:0.85rem; color:#8a6151; margin:4px 0 16px;">Thursday, 17 September 2026</div>
-        <div style="font-size:0.98rem; font-weight:600; color:#2d1310;">St. Joseph&rsquo;s Church</div>
-        <div style="font-size:0.85rem; color:#8a6151; margin-top:2px;">Podanur, Coimbatore</div>
-        <a href="https://maps.google.com/?q=St+Joseph%27s+Church+Podanur+Coimbatore" target="_blank" rel="noopener" style="display:inline-block; margin-top:18px; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; border-bottom:1px solid #c99a52; padding-bottom:3px;">View Location</a>
+    <div class="tickets">
+      <div class="ticket tilt-l sr" style="transition-delay:.05s;">
+        <div class="ticket-stamp" style="background:linear-gradient(150deg,#7c1f1f,#4e0f0d);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f3ddb8" stroke-width="1.4"><path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"/></svg>
+        </div>
+        <div class="ticket-date" style="background:linear-gradient(160deg,#7c1f1f 0%, #4e0f0d 100%);">
+          <span class="month">SEP</span>
+          <span class="day">17</span>
+          <span class="yr">2026</span>
+        </div>
+        <div class="ticket-perf"></div>
+        <div class="ticket-info">
+          <div class="kind">Wedding Ceremony</div>
+          <div class="time">4:00 PM &middot; Thursday</div>
+          <div class="venue">St. Joseph&rsquo;s Church</div>
+          <div class="addr">Podanur, Coimbatore</div>
+          <a class="go" href="https://maps.google.com/?q=St+Joseph%27s+Church+Podanur+Coimbatore" target="_blank" rel="noopener">
+            View Location
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
       </div>
 
-      <div class="card event-card sr" style="padding:38px 30px; text-align:center; transition-delay:.18s;">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7c1f1f" stroke-width="1.3" style="margin:0 auto 18px;">
-          <path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/>
-        </svg>
-        <h3 style="font-size:1.6rem; font-style:italic; color:#2d1310; margin-bottom:12px;">Reception</h3>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:#5c1414; font-variant-numeric:tabular-nums;">6:00 &ndash; 9:00 PM</div>
-        <div style="font-size:0.85rem; color:#8a6151; margin:4px 0 16px;">Thursday, 17 September 2026</div>
-        <div style="font-size:0.98rem; font-weight:600; color:#2d1310;">Thendral Mahal</div>
-        <div style="font-size:0.85rem; color:#8a6151; margin-top:2px;">Podanur Main Road, Coimbatore</div>
-        <a href="https://maps.google.com/?q=Thendral+Mahal+Podanur+Main+Road+Coimbatore" target="_blank" rel="noopener" style="display:inline-block; margin-top:18px; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; border-bottom:1px solid #c99a52; padding-bottom:3px;">View Location</a>
+      <div class="ticket tilt-r sr" style="transition-delay:.18s;">
+        <div class="ticket-stamp" style="background:linear-gradient(150deg,#c99a52,#8a6528);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff6e6" stroke-width="1.4"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg>
+        </div>
+        <div class="ticket-date" style="background:linear-gradient(160deg,#c99a52 0%, #8a6528 100%);">
+          <span class="month">SEP</span>
+          <span class="day">17</span>
+          <span class="yr">2026</span>
+        </div>
+        <div class="ticket-perf"></div>
+        <div class="ticket-info">
+          <div class="kind">Reception</div>
+          <div class="time">6:00 &ndash; 9:00 PM</div>
+          <div class="venue">Thendral Mahal</div>
+          <div class="addr">Podanur Main Road, Coimbatore</div>
+          <a class="go" href="https://maps.google.com/?q=Thendral+Mahal+Podanur+Main+Road+Coimbatore" target="_blank" rel="noopener">
+            View Location
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>

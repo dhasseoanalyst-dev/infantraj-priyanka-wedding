@@ -69,7 +69,7 @@
   .celeb-slide { flex: 0 0 100%; padding: 6px; }
 
   .celeb-card {
-    position: relative; display: grid; grid-template-columns: 1fr 1.15fr; align-items: stretch;
+    position: relative; display: flex; align-items: center; justify-content: center; min-height: 340px;
     background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.14);
     border-radius: 20px; overflow: hidden; backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
     box-shadow: 0 40px 90px -30px rgba(0,0,0,0.6);
@@ -85,19 +85,9 @@
     filter: blur(30px); opacity: .8; animation: orbDrift 14s linear infinite;
   }
 
-  .celeb-photo {
-    position: relative; z-index: 1; margin: 22px; border-radius: 14px; overflow: hidden;
-    background-size: cover; background-position: center 25%;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14);
-    min-height: 260px;
-  }
-  .celeb-photo::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(12,19,48,0.15) 0%, transparent 40%, rgba(23,6,3,0.35) 100%);
-  }
-
-  .celeb-info { position: relative; z-index: 1; padding: 40px 40px 36px 12px; display: flex; flex-direction: column; justify-content: center; }
+  .celeb-info { position: relative; z-index: 1; padding: 48px 46px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 460px; }
   .celeb-info .eyebrow { color: #e0b877; }
+  .celeb-info .go { align-self: center; }
   .celeb-info .kind { font-size: clamp(1.9rem,3.4vw,2.4rem); font-style: italic; color: #fdf0dc; margin: 8px 0 14px; }
   .celeb-info .time { font-family: "Bodoni Moda", serif; font-size: 1.5rem; color: #f0b06a; font-variant-numeric: tabular-nums; }
   .celeb-info .venue { font-size: 1.05rem; font-weight: 600; color: #fdf0dc; margin-top: 16px; }
@@ -136,9 +126,7 @@
   .celeb-dot.active { background: rgba(224,161,90,0.18); border-color: #e0a15a; color: #fdf0dc; }
 
   @media (max-width: 720px) {
-    .celeb-card { grid-template-columns: 1fr; }
-    .celeb-info { padding: 8px 26px 34px; }
-    .celeb-photo { min-height: 190px; }
+    .celeb-info { padding: 40px 26px; }
     .celeb-arrow { display: none; }
   }
 
@@ -345,7 +333,6 @@
           <div class="celeb-slide">
             <div class="celeb-card">
               <div class="celeb-orb" style="top:38%; left:20%;"></div>
-              <div class="celeb-photo" style="background-image:url('images/celebration.jpg');"></div>
               <div class="celeb-info">
                 <div class="eyebrow">01 &middot; Ceremony</div>
                 <div class="kind">Wedding Ceremony</div>
@@ -364,7 +351,6 @@
           <div class="celeb-slide">
             <div class="celeb-card">
               <div class="celeb-orb" style="top:34%; left:24%;"></div>
-              <div class="celeb-photo" style="background-image:url('images/celebration.jpg'); background-position:center 20%;"></div>
               <div class="celeb-info">
                 <div class="eyebrow">02 &middot; Reception</div>
                 <div class="kind">Reception</div>
